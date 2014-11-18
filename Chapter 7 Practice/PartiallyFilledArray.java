@@ -41,5 +41,35 @@ public class PartiallyFilledArray
         this.values[index] = this.values[this.currentSize - 1];
         this.currentSize--;
     }
-
+    
+    public void swapElements(int index1, int index2)
+    {
+        int tempValue = this.values[index1];
+        this.values[index1] = this.values[index2];
+        this.values[index2] = tempValue;
+    }
+    
+    public void insertElement(int value)
+    {
+        if( this.currentSize == this.values.length )
+        {
+            growArray();
+        }
+        
+        this.values[this.currentSize] = value;
+        this.currentSize++;
+    }
+    
+    private void growArray()
+    {
+        int newArraySize = this.values.length * 2;
+        int[] newArray = new int[newArraySize];
+        
+        for( int i = 0; i < this.values.length; i++ )
+        {
+            newArray[i] = this.values[i];
+        }
+        
+        this.values = newArray;
+    }
 }
