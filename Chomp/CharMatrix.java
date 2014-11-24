@@ -2,7 +2,7 @@
 
 public class CharMatrix
 {
-  // Fields:
+  // Instance variables:
 
   // Constructor: creates a grid with dimensions rows, cols,
   // and fills it with spaces
