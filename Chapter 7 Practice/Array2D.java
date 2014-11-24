@@ -31,10 +31,31 @@ public class Array2D
     
     public String getRow( int row )
     {
+        String str = "";
+        
+//         for( int col = 0; col < table[row].length; col++ )
+//         {
+//             str += table[row][col] + "\t";
+//         }
+
+        for( int val : table[row] )
+        {
+            str += val + "\t";
+        }
+        
+        return str;
     }
     
     public String getCol( int col )
     {
+        String str = "";
+        
+        for( int row = 0; row < table.length; row++ )
+        {
+            str += table[row][col] + "\t";
+        }
+        
+        return str;
     }
     
     public static void main(String[] args)
