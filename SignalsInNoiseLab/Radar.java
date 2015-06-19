@@ -9,9 +9,10 @@ public class Radar
 {
     
     // stores whether each cell triggered detection for the current scan of the radar
+    // (true represents a detected monster which may be a false positive)
     private boolean[][] currentScan;
     
-    // value of each cell is incremented for each scan in which that cell triggers detection 
+    // value of each cell is incremented for each scan in which that cell triggers detection
     private int[][] accumulator;
     
     // location of the monster
@@ -32,12 +33,13 @@ public class Radar
      */
     public Radar(int rows, int cols)
     {
-        // initialize instance variables
+        // initialize the currentScan 2D array and the accumulator 2D array
+        
         currentScan = new boolean[rows][cols]; // elements will be set to false
         accumulator = new int[rows][cols]; // elements will be set to 0
         
         // randomly set the location of the monster (can be explicity set through the
-        //  setMonsterLocation method
+        //  setMonsterLocation method for the unit test
         monsterLocationRow = (int)(Math.random() * rows);
         monsterLocationCol = (int)(Math.random() * cols);
         
@@ -51,6 +53,14 @@ public class Radar
      */
     public void scan()
     {
+        // algorithm for performing a scan:
+        //    1. set all cells in the currentScan 2D array to false
+        //    2. set the location of the monster in the currentScan 2D array
+        //    3. inject noise into the grid
+        //    4. update the accumulator 2D array based on the state of the currentScan 2D array
+        //    5. increment the numScans instance variable
+        
+        
         // zero the current scan grid
         for(int row = 0; row < currentScan.length; row++)
         {
@@ -172,6 +182,11 @@ public class Radar
      */
     private void injectNoise()
     {
+        // Iterate through all cells in the currentScan 2D array to inject noise by setting false positives.
+        // The noiseFraction instance variable is the probability that a given cell will be
+        // detected as a false positive. Use the Math.random method to determine if each cell should be set
+        // as a false positive.
+        
         for(int row = 0; row < currentScan.length; row++)
         {
             for(int col = 0; col < currentScan[0].length; col++)

@@ -13,8 +13,8 @@ import javax.swing.JComponent;
  */
 public class RadarComponent extends JComponent
 {
-    static final int CELL_WIDTH = 5;
-    static final int CELL_HEIGHT = 5;
+    static final int CELL_WIDTH_IN_PIXELS = 5;
+    static final int CELL_HEIGHT_IN_PIXELS = 5;
 
     Radar radar;
     
@@ -40,8 +40,8 @@ public class RadarComponent extends JComponent
     public Dimension getPreferredSize()
     {
         // the component needs to be large enough to encapsulate two grids side by side
-        final int WIDTH = radar.getNumCols() * CELL_WIDTH * 2;
-        final int HEIGHT = radar.getNumRows() * CELL_HEIGHT;
+        final int WIDTH = radar.getNumCols() * CELL_WIDTH_IN_PIXELS * 2;
+        final int HEIGHT = radar.getNumRows() * CELL_HEIGHT_IN_PIXELS;
         return new Dimension(WIDTH, HEIGHT);
     }
     
@@ -70,10 +70,10 @@ public class RadarComponent extends JComponent
         {
             for(int col = 0; col < cols; col++)
             {
-                int x = col * CELL_WIDTH ;
-                int y = row * CELL_HEIGHT ;
+                int x = col * CELL_WIDTH_IN_PIXELS ;
+                int y = row * CELL_HEIGHT_IN_PIXELS ;
                 
-                Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH , CELL_HEIGHT );
+                Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH_IN_PIXELS , CELL_HEIGHT_IN_PIXELS );
                 
                 if(radar.isDetected(row, col))
                 {
@@ -89,17 +89,17 @@ public class RadarComponent extends JComponent
         }
         
         // draw the image for the accumulated radar data to the right of the current scan image
-        final int X_OFFSET = cols * CELL_WIDTH;
+        final int X_OFFSET = cols * CELL_WIDTH_IN_PIXELS;
         
         // draw the image for the accumulated radar scans
         for(int row = 0; row < rows; row++)
         {
             for(int col = 0; col < cols; col++)
             {
-                int x = X_OFFSET + col * CELL_WIDTH ;
-                int y = row * CELL_HEIGHT ;
+                int x = X_OFFSET + col * CELL_WIDTH_IN_PIXELS ;
+                int y = row * CELL_HEIGHT_IN_PIXELS ;
                 
-                Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH , CELL_HEIGHT );
+                Rectangle2D.Double rect = new Rectangle2D.Double(x, y, CELL_WIDTH_IN_PIXELS , CELL_HEIGHT_IN_PIXELS );
                 
                 float pixelValue = (float)(radar.getAccumulatedDetection(row, col)) / radar.getNumScans();
 
