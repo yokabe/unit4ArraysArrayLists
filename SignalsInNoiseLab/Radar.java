@@ -1,4 +1,5 @@
-
+import java.util.Scanner;
+import java.util.Random;
 /**
  * The model for radar scan and accumulator
  * 
@@ -37,7 +38,8 @@ public class Radar
         
         
         //
-        // !!! add code here !!!
+        this.currentScan = new boolean[rows][cols];
+        this.accumulator = new int[rows][cols];
         //
         
         
@@ -47,6 +49,20 @@ public class Radar
         monsterLocationCol = (int)(Math.random() * cols);
         
         noiseFraction = 0.05;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         numScans= 0;
     }
     
@@ -64,11 +80,34 @@ public class Radar
         //    5. increment the numScans instance variable
         
         
-        //
-        // !!! add code here !!!
-        //
+        // Sets all elements of currentScan to false
+        for (int i = 0; i < this.currentScan.length; i++)
+        { for  (int j = 0; j < this.currentScan[i].length; j++)
+            {
+                this.currentScan[i][j] = false;
+            }
+        }
+        
+        this.currentScan[monsterLocationRow][monsterLocationCol] = true;
+        
+        injectNoise();
+        
+        // Goes through 2D list and increments the each place in the accumulator array by 1
+        for (int i = 0; i < this.currentScan.length; i++)
+        {
+            for  (int j = 0; j < this.currentScan[i].length; j++)
+            {
+                if (this.currentScan[i][j] == true)
+                {
+                    this.accumulator[i][j] += 1;
+                }
+            }
+        }
         
         
+        //
+        
+        numScans++;
     }
 
     /**
@@ -168,7 +207,19 @@ public class Radar
         
         
         //
-        // !!! add code here !!!
+        double n = 0;
+        
+        
+        for (int i = 0; i < this.currentScan.length; i++)
+        { for  (int j = 0; j < this.currentScan.length; j++)
+            {
+                n = Math.random();
+                if (n < 0.05)
+                {
+                    this.currentScan[i][j] = true;
+                }
+            }
+        }
         //
         
         
