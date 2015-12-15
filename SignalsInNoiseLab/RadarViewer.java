@@ -22,7 +22,7 @@ public class RadarViewer
         Scanner scan = new Scanner(System.in);
         System.out.print("Specify the location of the monster (y/n): ");
         String n = scan.next();
-        if (n=="y")
+        if (n.equals("y"))
         {
             System.out.print("Row of monster: ");
             int row = scan.nextInt();
