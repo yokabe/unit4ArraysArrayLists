@@ -20,11 +20,16 @@ public class RadarViewer
         final int COLS = 100;
         Radar radar = new Radar(ROWS, COLS);
         Scanner scan = new Scanner(System.in);
-        System.out.print("Row of monster: ");
-        int row = scan.nextInt();
-        System.out.print("Column of monster: ");
-        int col = scan.nextInt();
-        radar.setMonsterLocation(row, col);
+        System.out.print("Specify the location of the monster (y/n): ");
+        String n = scan.next();
+        if (n=="y")
+        {
+            System.out.print("Row of monster: ");
+            int row = scan.nextInt();
+            System.out.print("Column of monster: ");
+            int col = scan.nextInt();
+            radar.setMonsterLocation(row, col);
+        }
         radar.setNoiseFraction(0.10);
         radar.scan();
         

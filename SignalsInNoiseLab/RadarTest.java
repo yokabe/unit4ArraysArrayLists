@@ -46,21 +46,15 @@ public class RadarTest
     
     @Test
     /**
-     * An example of a method - replace this comment with your own
-     *  that describes the operation of the method
-     *
-     * @pre     preconditions for the method
-     *          (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *          (what the method guarantees upon completion)
-     * @param   y   description of parameter y
-     * @return  description of the return value
+     * Tests if the radar works
      */
     public void testMonsterLocation()
     {
+        //First test
         Radar radar = new Radar(100, 100);
         radar.setMonsterLocation(0,0);
         int n = 0;
+        //Scans radar class a lot of times
         while (n < 100)
         {
             radar.scan();
@@ -70,6 +64,7 @@ public class RadarTest
         int largest = 0;
         int a = 0;
         int b = 0;
+        //Finds largest value in radar and sets the locations
         for (int i = 0; i < radar.getNumRows(); i ++)
         {
             for (int j = 0; j < radar.getNumCols(); j++)
@@ -83,6 +78,48 @@ public class RadarTest
             }
         }
         
+        assertEquals(a, 0);
+        assertEquals(b, 0);
+       
+        
+    }
+
+    @Test
+    /**
+     * Tests monster location second time
+     */
+    public void testMonsterLocation1()
+    {
+        //Second test
+        Radar radar1 = new Radar(100, 100);
+        radar1.setMonsterLocation(55,60);
+        int n1 = 0;
+        //Scans radar class a lot of times
+        while (n1 < 100)
+        {
+            radar1.scan();
+            n1++;
+        }
+        
+        int largest1 = 0;
+        int a1 = 0;
+        int b1 = 0;
+         //Finds largest value in radar and sets the locations
+        for (int i = 0; i < radar1.getNumRows(); i ++)
+        {
+            for (int j = 0; j < radar1.getNumCols(); j++)
+            {
+                if (radar1.getAccumulatedDetection(i, j) > largest1)
+                {
+                    largest1 = radar1.getAccumulatedDetection(i, j);
+                    a1 = i;
+                    b1 = j;
+                }
+            }
+        }
+        
+        assertEquals(a1, 55);
+        assertEquals(b1, 60);
     }
 
 }
